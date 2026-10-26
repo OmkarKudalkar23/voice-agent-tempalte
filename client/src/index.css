@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --stage: #05070e;
+    --panel: #0b0f19;
+    --line: rgba(148, 163, 184, 0.12);
+  }
+  html, body {
+    background-color: #05070e;
+  }
+  body {
+    background-image:
+      radial-gradient(at 50% -10%, rgba(139, 92, 246, 0.14) 0px, transparent 55%),
+      radial-gradient(at 12% 20%, rgba(34, 211, 238, 0.07) 0px, transparent 48%),
+      radial-gradient(at 88% 78%, rgba(236, 72, 153, 0.07) 0px, transparent 50%);
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* thin scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(11, 15, 25, 0.6); }
+::-webkit-scrollbar-thumb { background: rgba(71, 85, 105, 0.55); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(100, 116, 139, 0.8); }
+
+.stage-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 75% 62% at 50% 42%, black 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 62% at 50% 42%, black 30%, transparent 78%);
+}
+
+.console-panel {
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.88), rgba(11, 15, 25, 0.92));
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  box-shadow: 0 18px 50px -22px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.hairline { border-color: rgba(148, 163, 184, 0.12); }
+
+.live-dot { position: relative; }
+.live-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 1px solid currentColor;
+  opacity: 0.5;
+  animation: ping-soft 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes ping-soft {
+  0% { transform: scale(0.7); opacity: 0.7; }
+  80%, 100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes eq-bar {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+.eq-bar { transform-origin: center; animation: eq-bar 0.9s ease-in-out infinite; }
+
+::selection { background: rgba(139, 92, 246, 0.35); }
+
+:focus-visible {
+  outline: 2px solid rgba(34, 211, 238, 0.7);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
